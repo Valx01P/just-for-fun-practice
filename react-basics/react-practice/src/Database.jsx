@@ -1,6 +1,7 @@
 import './App.css'
 import { getAllThings } from './supabaseClient'
 import { useState, useEffect } from 'react'
+import Delete from './Delete'
 
 const Database = () => {
     const [things, setThings] = useState([])
@@ -19,7 +20,10 @@ const Database = () => {
     return (
         <>
             {things.map((thing) => (
-                <h2 key={thing.id}>{thing.title}</h2>
+                <div key={thing.id}>
+                    <h2>{thing.title}</h2>
+                    <Delete id={thing.id}/>
+                </div>
             ))}
         </>
     )

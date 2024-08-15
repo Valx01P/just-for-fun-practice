@@ -33,7 +33,7 @@ export const getAllThings = async () => {
     if (error) throw error;
     return data;
   };  
-  
+
   export const updateThing = async (id, updates) => {
     const { data, error } = await supabase
       .from('things')
