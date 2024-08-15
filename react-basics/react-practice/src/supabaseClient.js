@@ -27,12 +27,15 @@ export const getAllThings = async () => {
   
   export const createThing = async (thing) => {
     const { data, error } = await supabase
-      .from('things')
-      .insert([thing]);
-  
+        .from('things')
+        .insert([thing])
+        .select('*')
+        .single();
+
     if (error) throw error;
-    return data;
-  };  
+    return data
+  };
+
 
   export const updateThing = async (id, updates) => {
     const { data, error } = await supabase
@@ -55,18 +58,3 @@ export const getAllThings = async () => {
   };
 
 export default supabase;
-
-
-/*
-const { data, error } = await supabase
-  .from('creators')
-  .select('*')
-  .eq('name', 'John Doe')
-  .single();
-
-if (error) {
-  console.error('Error:', error.message);
-} else {
-  console.log('Data:', data);
-}
-*/
