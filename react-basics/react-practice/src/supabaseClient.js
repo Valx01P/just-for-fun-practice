@@ -41,7 +41,9 @@ export const getAllThings = async () => {
     const { data, error } = await supabase
       .from('things')
       .update(updates)
-      .eq('id', id);
+      .eq('id', id)
+      .select('*')
+      .single();
   
     if (error) throw error;
     return data;
