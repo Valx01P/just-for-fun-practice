@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.create {
+  margin-top: 2rem;
+  background-color: #8a8a8a;
+  width: 16rem;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

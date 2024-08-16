@@ -21,7 +21,7 @@ const PostForm = ({ things, setThings }) => {
     };
 
     return (
-        <div>
+        <div className='create'>
             <form>
                 <input
                     type='text'
