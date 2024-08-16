@@ -3,40 +3,36 @@ import './App.css'
 import { useState } from 'react'
 import { updateThing } from './supabaseClient'
 
-const EditForm = ({ id, things, setThings }) => {
+const EditForm = ({ things, setThings, id }) => {
     const [newTitle, setNewTitle] = useState('')
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-
+    const onUpdate = async (e) => {
+        e.preventDefault()
         try {
-            const updates = { title: newTitle };
-            const updatedData = await updateThing(id, updates);
-
-            // Update the local state with the new title
-            const updatedThings = things.map(thing =>
-                thing.id === id ? updatedData : thing
-            );
-
-            setThings(updatedThings);
-            setNewTitle('');
+            let newData = { title : newTitle }
+            let updatedThing = await updateThing(id, newData)
+            setThings(things.map((thing) => (thing.id === updatedThing.id ? updatedThing : thing)))
+            setNewTitle('')
         } catch (err) {
-            console.error("Error updating thing:", err);
+            console.error(err)
         }
-    };
+    }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onUpdate}>
             <input
-                type='text'
-                value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
-                placeholder='New Title'
+                type='text'
+                placeholder='update thing'
+                name='update'
                 required
             />
-            <button type='submit'>Update</button>
+            <button type='submit'>
+                Update
+            </button>
         </form>
     )
+
 }
 
 export default EditForm
